@@ -72,3 +72,4 @@ crashlytics-build.properties
 
 # 압축 리소스 등등
 *.zip
+*.7z
