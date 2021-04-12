@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 7145576705874128619}
   - component: {fileID: 7145576705874128618}
   - component: {fileID: 7145576705874128599}
+  - component: {fileID: 45175111}
   m_Layer: 0
   m_Name: Barrel
-  m_TagString: Untagged
+  m_TagString: BARREL
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -27,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1156260936051523878}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.95, y: 0.0000014927838, z: -12.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -97,6 +98,22 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 32373cb5a2b659c4c8b6f2919660727c, type: 2}
   - {fileID: 2100000, guid: 8b486f856f0491e40977f08e818e3497, type: 2}
   - {fileID: 2100000, guid: aec187e4dc149164983cd07bb5dc4296, type: 2}
+--- !u!208 &45175111
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1156260936051523878}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.8, y: 1.25, z: 0.8}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.25, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &6678917321121881384
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,7 +130,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &1585322309772671119
 Transform:
