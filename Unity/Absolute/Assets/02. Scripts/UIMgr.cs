@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
 
 public class UIMgr : MonoBehaviour
 {
@@ -18,6 +20,9 @@ public class UIMgr : MonoBehaviour
 
     public void OnClickStartBtn(RectTransform rt)
     {
-        Debug.Log("Scale X : " + rt.localScale.x.ToString());
+        Debug.Log("Click Button");
+
+        SceneManager.LoadScene("scLevel01");
+        SceneManager.LoadScene("scPlay", LoadSceneMode.Additive);
     }
 }
