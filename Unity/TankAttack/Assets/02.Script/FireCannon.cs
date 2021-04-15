@@ -13,6 +13,8 @@ public class FireCannon : MonoBehaviour
     //cannon 발사 지점
     public Transform firePos;
 
+    private PhotonView pv = null;
+
     private void Awake()
     {
         //cannon 프리팹을 Resources 폴더에서 불러와 변수에 할당
@@ -21,6 +23,8 @@ public class FireCannon : MonoBehaviour
         fireSfx = (AudioClip)Resources.Load("CannonFire");
         //AudioSource 컴포넌트 할당
         sfx = GetComponent<AudioSource>();
+
+        pv = GetComponent<PhotonView>();
     }
     // Start is called before the first frame update
     void Start()
@@ -31,12 +35,15 @@ public class FireCannon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (pv.isMine && Input.GetMouseButtonDown(0))
         {
             Fire();
+
+            pv.RPC("Fire", PhotonTargets.Others, null);
         }
     }
 
+    [PunRPC]
     void Fire()
     {
         sfx.PlayOneShot(fireSfx, 1.0f);

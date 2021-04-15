@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PhotonInit : MonoBehaviour
 {
     //현재 제작한 App의 버전 정보
     public string version = "v1.0";
+
+    public InputField userId;
 
     private void Awake()
     {
@@ -17,7 +21,30 @@ public class PhotonInit : MonoBehaviour
     void OnJoinedLobby()
     {
         Debug.Log("Entered Lobby !");
-        PhotonNetwork.JoinRandomRoom();//무작위 룸 접속
+        userId.text = GetUserId();
+        //PhotonNetwork.JoinRandomRoom();//무작위 룸 접속
+    }
+
+    string GetUserId()
+    {
+        string userId = PlayerPrefs.GetString("USER_ID");
+
+        if(string.IsNullOrEmpty(userId))
+        {
+            userId = "USER_" + Random.Range(0, 999).ToString("000");
+        }
+        return userId;
+    }
+
+    public void OnClickJoinRandomRoom()
+    {
+        //로컬 유저 이름 설정
+        //PhotonNetwork.player.name = userId.text; 사용하지 않음
+        PhotonNetwork.player.NickName = userId.text;
+
+        PlayerPrefs.SetString("USER_ID", userId.text);
+
+        PhotonNetwork.JoinRandomRoom();
     }
 
     //무작위 룸 접속에 실패한 경우 호출되는 콜백 함수
@@ -34,7 +61,18 @@ public class PhotonInit : MonoBehaviour
     {
         Debug.Log("Enter Room");
 
-        CreateTank();
+        // CreateTank();
+        StartCoroutine(this.LoadBattleField());
+    }
+
+    //룸 씬으로 이동하는 코루틴 함수
+    IEnumerator LoadBattleField()
+    {
+        //씬을 이동하는동안 포톤 클라우드 서버로부터 네트워크 메시지 수신 중단
+        PhotonNetwork.isMessageQueueRunning = false;
+        //백그라운드로 씬 로딩
+        AsyncOperation ao = SceneManager.LoadSceneAsync("scBattleField");
+        yield return ao;
     }
 
     //탱크를 생성하는 함수
@@ -60,4 +98,4 @@ public class PhotonInit : MonoBehaviour
     {
         
     }
-}
+}   

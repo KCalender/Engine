@@ -23,8 +23,9 @@ public class Cannon : MonoBehaviour
         StartCoroutine(this.ExplosionCannon(3.0f));
     }
 
-    private void OnTriggerEnter()
+    private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.name.ToString());
         StartCoroutine(this.ExplosionCannon(0.0f));
     }
 
