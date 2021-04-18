@@ -9,12 +9,15 @@ public class PhotonInit : MonoBehaviour
     //현재 제작한 App의 버전 정보
     public string version = "v1.0";
 
+    //플레이어 이름 및 룸 이름 입력 UI 항목 연결
     public InputField userId;
+    public InputField roomName;
 
     private void Awake()
     {
         //포톤 클라우드에 접속
         PhotonNetwork.ConnectUsingSettings(version);
+        roomName.text = "ROOM_" + Random.Range(0, 999).ToString("000");
     }
 
     //포톤 클라우드에 정상적으로 접속한 후 로비에 입장하면 호출되는 콜백 함수
@@ -45,6 +48,34 @@ public class PhotonInit : MonoBehaviour
         PlayerPrefs.SetString("USER_ID", userId.text);
 
         PhotonNetwork.JoinRandomRoom();
+    }
+
+    //Make Room 버튼 클릭시 호출
+    public void OnClickCreateRoom()
+    {
+        string _roomName = roomName.text;
+        //현재 roomName이 공백 혹은 NULL 일경우 룸 이름 자동 지정
+        if(string.IsNullOrEmpty(roomName.text))
+        {
+            _roomName = "ROOM_" + Random.Range(0, 999).ToString("000");
+        }
+        //플레이어 이름 저장
+        PhotonNetwork.player.NickName = userId.text;
+        PlayerPrefs.SetString("USER_ID", userId.text);
+
+        //생성 룸의 조건(옵션) 설정
+        RoomOptions roomOptions = new RoomOptions();
+        roomOptions.IsOpen = true;
+        roomOptions.IsVisible = true;
+        roomOptions.MaxPlayers = 20;
+        //룸 생성
+        PhotonNetwork.CreateRoom(_roomName, roomOptions, TypedLobby.Default);
+    }
+
+    //룸 생성 실패시 호출되는 콜백 함수
+    void OnPhotonCreateRoomFailed(object[] codeAndMsg)
+    {
+        Debug.Log("Create Room Failed = " + codeAndMsg[1]);
     }
 
     //무작위 룸 접속에 실패한 경우 호출되는 콜백 함수
