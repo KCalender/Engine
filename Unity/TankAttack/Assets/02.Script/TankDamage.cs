@@ -18,6 +18,12 @@ public class TankDamage : MonoBehaviour
     public Canvas hudCanvas;
     public Image hpBar;
 
+    //PhotonView 컴포넌트 및 플레이어id, 스코어 변수들
+    private PhotonView pv = null;
+    public int playerID = -1;
+    public int killCount = 0;
+    public Text txtKillCount;
+
     private void Awake()
     {
         //탱크 모델의 모든 MeshRenderer 컴포넌트를 추출한 후 배열에 할당
@@ -30,6 +36,10 @@ public class TankDamage : MonoBehaviour
         expEffect = Resources.Load<GameObject>("Large Explosion");
 
         hpBar.color = Color.green;
+
+        //PhotonView 의 ownerid를 저장
+        pv = GetComponent<PhotonView>();
+        playerID = pv.ownerId;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -48,6 +58,7 @@ public class TankDamage : MonoBehaviour
 
             if(currHp <= 0)
             {
+                SaveKillCount(other.GetComponent<Cannon>().playerId);
                 StartCoroutine(this.ExplosionTank());
             }
         }
@@ -85,15 +96,32 @@ public class TankDamage : MonoBehaviour
             renderer.enabled = isVisible;
         }
     }
-    // Start is called before the first frame update
-    void Start()
+
+    void SaveKillCount(int firePlayerId)
     {
-        
+        //TANK 태그로 지정된 모든 탱크들
+        GameObject[] tanks = GameObject.FindGameObjectsWithTag("TANK");
+
+        foreach(GameObject tank in tanks)
+        {
+            var tankDamage = tank.GetComponent<TankDamage>();
+            //탱크의 playerid 가 포탄의 playerid와 동일한지 판단
+            if(tankDamage != null && tankDamage.playerID == firePlayerId)
+            {
+                tankDamage.incKillCount();
+                    break;
+            }
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    void incKillCount()
     {
-        
+        ++killCount;
+        txtKillCount.text = killCount.ToString();
+
+        if(pv.isMine)
+        {
+            PhotonNetwork.player.AddScore(1);
+        }
     }
 }

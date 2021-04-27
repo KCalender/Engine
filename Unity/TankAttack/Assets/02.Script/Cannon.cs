@@ -10,7 +10,9 @@ public class Cannon : MonoBehaviour
     public GameObject expEffect;
     private CapsuleCollider _collider;
     private Rigidbody _rigidbody;
-    
+
+    public int playerId = -1;
+
     // Start is called before the first frame update
     void Start()
     {
