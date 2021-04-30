@@ -20,12 +20,16 @@ public class QuaterViewCameraMove : MonoBehaviour
     }
 
 
-    // Update is called once per frame
+    /// <summary>
+    /// isFocus에 따라 카메라 이동 방식 변경
+    /// true -> target 위치에 고정되어 따라다님
+    /// false -> 마우스가 게임 화면 가장자리로 나갈 경우 해당 마우스 포인터 위치에 따라 화면 이동 및 키보드 입력에 따른 이동
+    /// </summary>
     void Update()
     {
         if (!isFocus)
         {
-            Vector3 moveDir = new Vector3();
+            Vector3 moveDir;
 
             Vector3 MousePoint = Input.mousePosition;
             if (MousePoint.x < LeftS && MousePoint.y > TopS)
