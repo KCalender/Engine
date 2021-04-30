@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using System.Drawing;
 
 public class QuaterViewCameraMove : MonoBehaviour
 {
@@ -13,6 +15,7 @@ public class QuaterViewCameraMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Screen.fullScreen = true;
         LeftS = Screen.width / 30; 
         RightS = Screen.width - LeftS;
         BottomS = Screen.height / 30;
@@ -27,40 +30,42 @@ public class QuaterViewCameraMove : MonoBehaviour
     /// </summary>
     void Update()
     {
-        if (!isFocus)
-        {
-            Vector3 moveDir;
+        RectangleF screen = new Rectangle(0, 0, Screen.width, Screen.height);
+        if(screen.Contains(new PointF(Input.mousePosition.x, Input.mousePosition.y)))
+            if (!isFocus)
+            {
+                Vector3 moveDir;
 
-            Vector3 MousePoint = Input.mousePosition;
-            if (MousePoint.x < LeftS && MousePoint.y > TopS)
-                moveDir = Vector3.forward + Vector3.left;
-            else if (MousePoint.x > RightS && MousePoint.y > TopS)
-                moveDir = Vector3.forward + Vector3.right;
-            else if (MousePoint.x < LeftS && MousePoint.y < BottomS)
-                moveDir = Vector3.back + Vector3.left;
-            else if (MousePoint.x > RightS && MousePoint.y > TopS)
-                moveDir = Vector3.back + Vector3.right;
-            else if (MousePoint.x > RightS)
-                moveDir = Vector3.right;
-            else if (MousePoint.x < LeftS)
-                moveDir = Vector3.left;
-            else if (MousePoint.y > TopS)
-                moveDir = Vector3.forward;
-            else if (MousePoint.y < BottomS)
-                moveDir = Vector3.back;
+                Vector3 MousePoint = Input.mousePosition;
+                if (MousePoint.x < LeftS && MousePoint.y > TopS)
+                    moveDir = Vector3.forward + Vector3.left;
+                else if (MousePoint.x > RightS && MousePoint.y > TopS)
+                    moveDir = Vector3.forward + Vector3.right;
+                else if (MousePoint.x < LeftS && MousePoint.y < BottomS)
+                    moveDir = Vector3.back + Vector3.left;
+                else if (MousePoint.x > RightS && MousePoint.y > TopS)
+                    moveDir = Vector3.back + Vector3.right;
+                else if (MousePoint.x > RightS)
+                    moveDir = Vector3.right;
+                else if (MousePoint.x < LeftS)
+                    moveDir = Vector3.left;
+                else if (MousePoint.y > TopS)
+                    moveDir = Vector3.forward;
+                else if (MousePoint.y < BottomS)
+                    moveDir = Vector3.back;
+                else
+                {
+                    h = Input.GetAxis("Horizontal");
+                    v = Input.GetAxis("Vertical");
+
+                    moveDir = (Vector3.forward * v) + (Vector3.right * h);
+                }
+                transform.Translate(moveDir * Time.deltaTime * 20, Space.Self);
+            }
             else
             {
-                h = Input.GetAxis("Horizontal");
-                v = Input.GetAxis("Vertical");
-
-                moveDir = (Vector3.forward * v) + (Vector3.right * h);
+                transform.position = new Vector3(Target.position.x, 10, Target.position.z -6);
             }
-            transform.Translate(moveDir * Time.deltaTime * 20, Space.Self);
-        }
-        else
-        {
-            transform.position = new Vector3(Target.position.x, 10, Target.position.z -6);
-        }
     }
     
     

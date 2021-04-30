@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class HeroController : MonoBehaviour
+
+public class ChampionCtrl : MonoBehaviour
 {
-    public float moveSpeed = 10.0f;
-    public float rotateSpeed = 10.0f;
-
+    public float MoveSpeed;
+    [HideInInspector]
+    public float RotateSpeed = 10.0f;
 
     private Vector3 movePos = Vector3.zero;
     private Vector3 moveDir = Vector3.zero;
@@ -29,12 +29,11 @@ public class HeroController : MonoBehaviour
         }
 
         // 보는 방향과 목표 방향을 이용해 회전하고자하는 방향을 구한다.  
-        Vector3 newDir = Vector3.RotateTowards(transform.forward, moveDir, rotateSpeed * Time.deltaTime, 0.0f);
+        Vector3 newDir = Vector3.RotateTowards(transform.forward, moveDir, RotateSpeed * Time.deltaTime, 0.0f);
 
         transform.rotation = Quaternion.LookRotation(newDir);
-        transform.position = Vector3.MoveTowards(transform.position, movePos, moveSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, movePos, MoveSpeed * Time.deltaTime);
     }
 
+    
 }
-
-

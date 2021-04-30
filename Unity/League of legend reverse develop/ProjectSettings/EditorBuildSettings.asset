@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/1. Scenes/FieldScene/Summoner's rift.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/1. Scenes/UIScene/EscapeUI.unity
+    guid: c6d10959a03e31c4fb28382f510b3c05
+  - enabled: 1
+    path: Assets/1. Scenes/UIScene/PurchaseUI.unity
+    guid: 53a3f13e0695f014e9e073647671bd74
   m_configObjects: {}
