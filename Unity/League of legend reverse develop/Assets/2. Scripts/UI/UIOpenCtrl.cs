@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIOpenCtrl : MonoBehaviour
 {
     // 키보드 입력 Dic
     Dictionary<KeyCode, Action> UIkeyDictionary;
 
-    private bool isOpenUI = false;
+    public GameObject EscapeUI, PurchaseUI;
 
     // Start is called before the first frame update
     void Awake()
@@ -20,11 +21,12 @@ public class UIOpenCtrl : MonoBehaviour
             { KeyCode.Escape, KeyDown_Escape },             //option 창 open
             { KeyCode.P, KeyDown_P }                        // 상점 open
         };
+        
     }
 
     void Update()
     {
-        if (Input.anyKeyDown)
+        if (Input.anyKeyDown)                               //키 입력에 대하여 dic의 action에 따라 처리
         {
             foreach (var dic in UIkeyDictionary)
             {
@@ -35,9 +37,17 @@ public class UIOpenCtrl : MonoBehaviour
             }
         }
     }
-
     private void KeyDown_Escape()
     {
+        if (EscapeUI.activeSelf == true)
+            EscapeUI.SetActive(false);
+        else
+            if (PurchaseUI.activeSelf == true)
+                PurchaseUI.SetActive(false);
+            else
+                EscapeUI.SetActive(true);
+
+        /*** <UI 를 Scene으로 처리할때 사용>
         if (!isOpenUI)
         {
             SceneManager.LoadScene("EscapeUI", LoadSceneMode.Additive);
@@ -51,9 +61,18 @@ public class UIOpenCtrl : MonoBehaviour
                 SceneManager.UnloadSceneAsync("PurchaseUI");
             isOpenUI = false;
         }
+        ***/
     }
+
     private void KeyDown_P()
     {
+        if (EscapeUI.activeSelf == false)
+            if (PurchaseUI.activeSelf == true)
+                PurchaseUI.SetActive(false);
+            else
+                PurchaseUI.SetActive(true);
+
+        /*** <UI 를 Scene으로 처리할때 사용>
         if (!isOpenUI)
         {
             SceneManager.LoadScene("PurchaseUI", LoadSceneMode.Additive);
@@ -64,5 +83,6 @@ public class UIOpenCtrl : MonoBehaviour
             SceneManager.UnloadSceneAsync("PurchaseUI");
             isOpenUI = false;
         }
+        ***/
     }
 }
