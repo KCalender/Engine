@@ -9,6 +9,8 @@ public class QuaterViewCameraMove : MonoBehaviour
     public Transform Target;
     public bool isFocus = false;
 
+    public float cameraSpeed;
+
     private float h, v;
 
     private int LeftS, RightS, TopS, BottomS;
@@ -60,7 +62,7 @@ public class QuaterViewCameraMove : MonoBehaviour
 
                     moveDir = (Vector3.forward * v) + (Vector3.right * h);
                 }
-                transform.Translate(moveDir * Time.deltaTime * 20, Space.Self);
+                transform.Translate(moveDir * Time.deltaTime * cameraSpeed, Space.Self);
             }
             else
             {

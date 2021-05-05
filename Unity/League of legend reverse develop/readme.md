@@ -4,9 +4,9 @@
 
 [개발 시작 일지](https://github.com/KCalender/Engine/blob/main/Unity/League%20of%20legend%20reverse%20develop/Dev%20journal/2021_04_29.md)
 
-[최근 개발 일지](https://github.com/KCalender/Engine/blob/main/Unity/League%20of%20legend%20reverse%20develop/Dev%20journal/2021_04_30.md)
+[최근 개발 일지](https://github.com/KCalender/Engine/blob/main/Unity/League%20of%20legend%20reverse%20develop/Dev%20journal/2021_05_04.md)
 
-[개발 완료 유튜브 링크]()
+[개발 완료 유튜브 링크(아직 없음)]()
 
 
-### 참고사이트
+### 참고사이트 및 동영상
