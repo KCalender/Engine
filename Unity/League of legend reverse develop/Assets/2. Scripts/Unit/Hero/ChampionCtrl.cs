@@ -26,6 +26,7 @@ public class ChampionCtrl : MonoBehaviour
 
     void Update()
     {
+
         if (Input.GetMouseButton(1))
         {
             // 카메라에서 광선을 마우스 클릭된 곳에 조사한다. 
@@ -45,14 +46,17 @@ public class ChampionCtrl : MonoBehaviour
                 }
             }
         }
-
+        
         // 보는 방향과 목표 방향을 이용해 회전하고자하는 방향을 구한다.  
         Vector3 newDir = Vector3.RotateTowards(transform.forward, moveDir, RotateSpeed * Time.deltaTime, 0.0f);
 
         transform.rotation = Quaternion.LookRotation(newDir);
-        transform.position = Vector3.MoveTowards(transform.position, movePos, unit.MoveSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, movePos, unit.MoveSpeed/10 * Time.deltaTime);
+        
+
         isMove = true;
-        if (Vector3.Distance(movePos, transform.position) <= 0.1f)
+        // 움직임 상태 변수
+        if (Vector3.Distance(movePos, transform.position) <= 0.1f)      //마우스 클릭 한 destination까지의 거리가 0.1f 보다 작을때 움직임 종료
         {
             isMove = false;
         }
