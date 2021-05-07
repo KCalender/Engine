@@ -13,7 +13,6 @@ public class Monster : MonoBehaviour
     private MonsterMoveCtrl monsterMoveCtrl;
     private new Rigidbody rigidbody;
 
-    private NavMeshAgent a;
 
     public void Setup(Transform[] wayPoints)
     {
