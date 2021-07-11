@@ -1,0 +1,1 @@
+../../../andtest1/andtest1.uproject  /Game/FirstPersonCPP/Maps/FirstPersonExampleMap -Messaging -SessionId=E185877D4D04E3C4D74AC28D3E2796DA -SessionOwner="pdt61" -SessionName="Launch On Device" -iterative

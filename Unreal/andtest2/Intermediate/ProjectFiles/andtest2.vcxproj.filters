@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\andtest2.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{DA1450BD-B1F0-4301-B731-5469AC45A0E3}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\andtest2.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\andtest2Editor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <Filter Include="Config">
+      <UniqueIdentifier>{A76B9A15-E886-45DC-8C11-B9C72B187558}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\andtest2">
+      <UniqueIdentifier>{42F55329-77BA-462F-AE15-3C33ED0BA4D5}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\andtest2\andtest2.Build.cs">
+      <Filter>Source\andtest2</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\andtest2\andtest2.cpp">
+      <Filter>Source\andtest2</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\andtest2\andtest2.h">
+      <Filter>Source\andtest2</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\andtest2\andtest2Character.cpp">
+      <Filter>Source\andtest2</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\andtest2\andtest2Character.h">
+      <Filter>Source\andtest2</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\andtest2\andtest2GameMode.cpp">
+      <Filter>Source\andtest2</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\andtest2\andtest2GameMode.h">
+      <Filter>Source\andtest2</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

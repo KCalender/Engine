@@ -73,3 +73,6 @@ crashlytics-build.properties
 # 압축 리소스 등등
 *.zip
 *.7z
+
+# 안드로이드 동적 라이브러리
+*.so

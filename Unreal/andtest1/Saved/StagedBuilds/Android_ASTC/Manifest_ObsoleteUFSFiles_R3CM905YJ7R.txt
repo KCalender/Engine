@@ -1,0 +1,4 @@
+Engine/Content/EditorSounds/Notifications/CompileSuccess_Cue.uasset
+Engine/Content/EditorSounds/Notifications/CompileSuccess_Cue.uexp
+lugins/FX/Niagara/Content/Enums/ENiagaraRandomnessMode.uexp
+andtest1/Saved/Logs/andtest1-backup-0001.01.01-00.00.00.log

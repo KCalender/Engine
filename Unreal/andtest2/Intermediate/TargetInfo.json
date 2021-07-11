@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "andtest2",
+			"Path": "D:\\Engine\\Unreal\\andtest2\\Source\\andtest2.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "andtest2Editor",
+			"Path": "D:\\Engine\\Unreal\\andtest2\\Source\\andtest2Editor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}
